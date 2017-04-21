@@ -1,3 +1,23 @@
-<h1>
-  {{title}}
-</h1>
+<h1>Poggle</h1>
+<div style="width:500px; float:left; padding-right: 3em">
+<md-grid-list cols="5" rowHeight="1:1" gutterSize="3px">
+	<md-grid-tile *ngFor="let letter of board; let i = index" 
+	(click)="select(i)"
+	colspan="1" 
+	rowspan="1" 
+	[ngClass]="{'selected-letter':this.selectedArr.includes(i)}">
+		<h2>{{letter}}</h2>
+	</md-grid-tile>
+</md-grid-list>
+</div>
+<h2>Current Word: {{currentWord}}</h2>
+<button md-raised-button
+	(click)="submitWord()">
+	Submit Current Word
+</button>
+<h2>Total Score: {{totalScore}}</h2>
+
+<h2>Submitted Words</h2>
+<div *ngFor="let word of wordList; let i = index">
+	<h3>{{word}} - {{pointList[i]}} pts</h3>
+</div>
