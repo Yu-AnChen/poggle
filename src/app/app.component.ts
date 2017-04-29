@@ -129,6 +129,7 @@ export class AppComponent implements OnInit, OnChanges {
 			return;
 		}
 		this.selectedArr = [];
+		this._toWord();
 		this.lastNum = undefined;
 		this._updateScore();
 		return;

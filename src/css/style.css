@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+
+/* Global */
+  body {
+    font-family: 'Source Sans Pro', sans-serif;
+    color: #18252e;
+    text-transform: uppercase;
+  }
+
+  .container {
+    width: 630px;
+    margin: 0 auto;
+  }
+
+  .clear {
+    clear: both;
+  }
+
+/* Header */
+
+  .header {
+    width: 100%;
+  }
+
+  .header img {
+    width: 150px;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    padding: 20px 0;
+  }
+
+/* Game Area */
+
+.game-area {
+  padding: 20px;
+  margin:0;
+  float: left;
+  width: 300px;
+}
+
+  .blue-area {
+    background: #DBF1FF;
+    padding: 15px 15px 5px 15px;
+    width: 300px;
+    margin: 0px;
+  }
+
+  .row {
+    width: 300px;
+    display: block;
+  }
+
+  .row div:last-child {
+    margin-right: 0;
+  }
+
+
+  .word-area {
+    padding: 30px 15px;
+    width: 100%;
+  }
+
+/* Score Area */
+
+.score-box {
+	width: 200px;
+	border-radius: 5px;
+	border: solid 1px #d3dee6;
+  float: right;
+  margin: 15px;
+  padding: 20px;
+}
+
+.word-list {
+  width: 100%;
+  height: 408px;
+}
+
+.total-score {
+  border-top: 1px solid #d3dee6;
+  padding-top: 25px;
+  width: 100%;
+}
+
+.words {
+  width: 50%;
+  float: left;
+}
+
+.scores {
+  width: 50%;
+  float: left;
+  text-align: right;
+}
+
+.score-box li {
+  padding-top: 15px;
+}
+
+/* Tile States */
+
+.row div {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  float: left;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  -webkit-transition: background 0.5s; /* Safari */
+  transition: background 0.5s;
+}
+
+  .tile {
+    background: #fff;
+  	border: solid 1px #979797;
+    box-shadow: 2px 2px 5px rgba(0, 109, 181, .25);
+  }
+
+  .tile:hover {
+    background: #E6EDF2;
+    cursor: pointer;
+  }
+
+  .tile-selected {
+  	background: #1387ff;
+  	border: solid 1px #1387ff;
+    box-shadow: inset 2px 2px 5px rgba(0, 109, 181, .7);
+  }
+
+  .tile-selected:hover {
+    background: #0D6FD6;
+    cursor: pointer;
+  }
+
+/* Button States */
+
+  .button {
+  	width: 100%;
+  	height: 35px;
+  	border-radius: 5px;
+  	background-color: #1287ff;
+    margin-top: 30px;
+    padding: 20px 0 0 0;
+    -webkit-transition: background 0.5s; /* Safari */
+    transition: background 0.5s;
+    box-shadow: 2px 2px 5px rgba(178, 195, 208, .7);
+  }
+
+  .button:hover {
+  	background: #0D6FD6;
+    cursor: pointer;
+  }
+
+
+
+/* Type Styles */
+
+  h2 {
+    font-size: 15px;
+  	font-weight: 600;
+  	letter-spacing: 1.2px;
+    display: inline;
+    color: #607383;
+  }
+
+  .tile-selected div {
+    margin-top: 13px;
+    width: 100%;
+    font-size: 24px;
+  	font-weight: normal;
+  	text-align: center;
+  	color: #ffffff;
+  }
+
+  .tile div {
+    margin-top: 13px;
+  	font-size: 24px;
+  	font-weight: normal;
+  	text-align: center;
+  	color: #18252e;
+    width: 100%;
+  }
+
+  .button div {
+  	font-size: 15px;
+  	font-weight: 600;
+  	text-align: center;
+    width: 100%;
+  	color: #ffffff;
+    letter-spacing: 3px;
+  }
+
+.current-header {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  line-height: 1.5;
+  text-align: center;
+  color: #607383;
+  display: block;
+}
+
+.current-word {
+  font-size: 30px;
+	font-weight: normal;
+	letter-spacing: 3px;
+	text-align: center;
+	color: #18252e;
+  display: block;
+}
+
+.total-score h2 {
+  text-align: left;
+}
+
+
+.total-score span {
+  text-align: right;
+  float: right;
+  position: relative;
+  top: -5px;
+  font-size: 25px;
+}
+
+/* Accessibility */
+.hidden {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  display: block;
+}

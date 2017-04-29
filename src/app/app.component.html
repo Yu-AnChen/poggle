@@ -1,4 +1,49 @@
-<h1>Poggle</h1>
+<div class="container">
+<div class="header">
+	<img src="assets/Poggle-logo.png" alt="">
+</div>
+
+<div class="game-area">
+	<div class="blue-area">
+		<div class="row">
+			<div *ngFor="let letter of board; let i = index" 
+				(click)="select(i)"
+				[ngClass]="this.selectedArr.includes(i) ? 'tile-selected' : 'tile'">
+				<div>{{letter}}</div>
+			</div>
+		</div>
+		<div style="clear: both;"></div>
+	</div>
+	
+	<div class="word-area clear">
+		<h2 class="current-header">current word</h2>
+		<div class="current-word">{{currentWord || 'select letter'}}</div>
+		<div class="button"
+			(click)="submitWord()">
+			<div>submit word</div>
+		</div>
+	</div>
+</div>
+
+<div class="score-box">
+	<ul class="word-list">
+		<li *ngFor="let word of wordList; let i = index">
+			<div class="words">
+				{{word}}
+			</div>
+			<div class="scores">
+				{{pointList[i]}}
+			</div>
+		</li>
+	</ul>
+	<div class="total-score">
+		<h2>Total Score</h2>
+		<span>{{totalScore}}</span>
+	</div>
+</div>
+</div>
+
+<!--<h1>Poggle</h1>
 <div style="width:500px; float:left; padding-right: 3em">
 <md-grid-list cols="5" rowHeight="1:1" gutterSize="3px">
 	<md-grid-tile *ngFor="let letter of board; let i = index" 
@@ -20,4 +65,4 @@
 <h2>Submitted Words</h2>
 <div *ngFor="let word of wordList; let i = index">
 	<h3>{{word}} - {{pointList[i]}} pts</h3>
-</div>
+</div>-->

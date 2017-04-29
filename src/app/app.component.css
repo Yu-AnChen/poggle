@@ -1,6 +1,10 @@
-md-grid-tile {
+/*md-grid-tile {
     background-color: lightsalmon;
 }
 .selected-letter {
     background-color: lightgreen;
-}
+}*/
+
+.row div:nth-child(5n) {
+    margin-right: 0;
+  }
