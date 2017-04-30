@@ -1,6 +1,9 @@
 import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { MdGridListModule } from '@angular/material';
 
+import dice from './dice';
+import Dice from './DiceClass';
+
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html',
@@ -9,7 +12,6 @@ import { MdGridListModule } from '@angular/material';
 export class AppComponent implements OnInit, OnChanges {
 	title = 'app works!';
 	board = [];
-	_dice: Array<String>;
 	lastNum: number;
 	selectedArr: Array<number> = [];
 	wordList: Array<String> = [];
@@ -27,66 +29,13 @@ export class AppComponent implements OnInit, OnChanges {
 	}
 
 	setBoard() {
-		this.setDice();
+		let newDice = new Dice(dice);
 
-		this.board = this._getFiveDiceRandom()
-			.map(element => this._rollDie(element))
-			.map(element => this._convertQToQu(element))
-			.reduce((a, b) => [...a, ...b]);
-	}
-
-	setDice() {
-		return this._dice = 'aaafrsaaeeeeaafirsadennnaeeeemaeegmuaegmnnafirsybjkqxzccenstceiiltceilptceipstddhnotdhhlordhlnordhlnoreiiittemotttensssufiprsygorrvwiprrrynootuwooottu'
+		this.board = newDice.getDiceRandom(5)
+			.map(element => newDice.rollDie(element, 5))
+			.join('')
 			.split('')
-			.reduce((a, b) => {
-				if (!a.length) {
-					a.push(b);
-					return a;
-				}
-				if (a[a.length - 1].length < 6) {
-					a[a.length - 1] += b;
-					return a;
-				} else {
-					a.push(b);
-					return a;
-				}
-			}, []);
-	}
-
-	_getFiveDiceRandom() {
-		return Array(5)
-			.fill(1)
-			.map(element => {
-				let position = Math.floor(Math.random() * this._dice.length);
-				return this._dice.splice(position, 1)[0];
-			});
-	}
-
-	_rollDie(die) {
-		let dieArr = die.split('');
-		let startIndex = Math.floor(Math.random() * die.length);
-		let outputArr = Array(5)
-			.fill(0)
-			.map(element => {
-				if (startIndex < dieArr.length) {
-					return dieArr.splice(startIndex, 1);
-				} else {
-					return dieArr.splice(0, 1);
-				}
-			});
-		return outputArr.join('');
-	}
-
-	_convertQToQu(str) {
-		return str
-			.split('')
-			.map(element => {
-				if (element === 'q') {
-					return 'qu';
-				} else {
-					return element;
-				}
-			});
+			.map(element => newDice.convertQToQu(element))
 	}
 
 	select(num) {
