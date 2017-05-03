@@ -3,6 +3,7 @@ import { MdGridListModule } from '@angular/material';
 
 import dice from './dice';
 import Dice from './DiceClass';
+import Tile from './TileClass';
 
 @Component({
 	selector: 'app-root',
@@ -12,16 +13,17 @@ import Dice from './DiceClass';
 export class AppComponent implements OnInit, OnChanges {
 	title = 'app works!';
 	board = [];
-	lastNum: number;
 	selectedArr: Array<number> = [];
 	wordList: Array<String> = [];
 	pointList: Array<number>;
 	totalScore: number;
 	currentWord: String = '';
+	tile: Tile;
 
 	ngOnInit() {
 		this.setBoard();
 		console.log(this.board);
+		this.tile = new Tile(5);
 	}
 
 	ngOnChanges(change: SimpleChanges) {
@@ -39,39 +41,11 @@ export class AppComponent implements OnInit, OnChanges {
 	}
 
 	select(num) {
-		if (this.lastNum === undefined) {
-			this.selectedArr.push(num);
-			this.lastNum = num;
-			this._toWord();
-			return;
-		}
-		if (num === this.lastNum) {
-			this.selectedArr.pop();
-			this.lastNum = this.selectedArr[this.selectedArr.length - 1];
-			this._toWord();
-			return;
-		}
-		let lastNum = this.lastNum;
-
-		let selectables = [lastNum, lastNum - 5, lastNum + 5]
-			.filter(element => element >=0 && element <= 24)
-			.map(element => this._getNeighbors(element))
-			.reduce((a, b) => [...a, ...b])
-			.filter(element => !this.selectedArr.includes(element));
-		if (!selectables.includes(num)) {
-			console.info('cannot select this character');
-			return;
-		}
-		this.selectedArr.push(num);
-		this.lastNum = num;
+		this.tile.select(num);
+		this.selectedArr = this.tile.selectedList;
 		this._toWord();
-		return;
 	}
 
-	_getNeighbors(num) {
-		return [num - 1, num, num + 1]
-			.filter(element => Math.floor(element / 5) === Math.floor(num / 5));
-	}
 	submitWord() {
 		let add = this._addCurrentWordToWordList();
 		if (add === 'fail') {
@@ -79,7 +53,7 @@ export class AppComponent implements OnInit, OnChanges {
 		}
 		this.selectedArr = [];
 		this._toWord();
-		this.lastNum = undefined;
+		this.tile.reset();
 		this._updateScore();
 		return;
 	}
